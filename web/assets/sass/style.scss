@@ -1,0 +1,169 @@
+// Variables
+$light-red: #a94442;
+$light-green: #5cb85c;
+$sky-blue: #5bc0de;
+$blue: #337ab7;
+
+html, body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  font {
+    size: 12px;
+    family: Helvetica;
+  }
+  color: #777;
+}
+.wrapper {
+  min-height: 500px;
+  overflow: hidden;
+}
+a {
+  color: inherit;
+  &:hover, &:active {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+ul {
+  list-style: none;
+}
+#left-sidebar {
+  padding-bottom: 100%;
+  margin-bottom: -100%;
+  border-right: 1px solid #efefef;
+  ul {
+    padding: 0 10px 0 20px;
+  }
+  ul li {
+    padding: 10px;
+  }
+}
+#weather {
+  padding-bottom: 0;
+  .day-block {
+    padding: 20px;
+    border-right: 1px solid #efefef;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 135px;
+    i { margin-top:20px; }
+    .weather-info {
+      text-align: center;
+      width: auto;
+      display: inline-block;
+      margin-left: 20px;
+    }
+    &.now {
+      color: $sky-blue;
+      i { margin-top: 15px; }
+      .weather-info { margin-top: 10px; }
+    }
+    &:last-child {
+      border-right: none;
+    }
+  }
+}
+.actuator-trigger {
+    width: 180px;
+    padding: 20px 10px;
+    border: 1px solid;
+    border-radius: 10px;
+    margin: 10px auto;
+    text-align: center;
+    color: #ececec;
+  &.on {
+    background-color: $light-green;
+    border-color: #4cae4c;
+  }
+  &.off {
+    background-color: $light-red;
+    border-color: #d43f3a;
+  }
+}
+.bordered-container {
+  border: solid 1px #efefef;
+  border-radius: 5px;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+#actuators {
+  padding-top: 10px;
+}
+#sms-container {
+  height: 400px;
+  .sms-form {
+    margin-top: -10px;
+    button { float: right; }
+  }
+  #sms-messages {
+    padding-right: 0px;
+    .messages {
+      height: 275px;
+      margin-bottom: 10px;
+      overflow-y: scroll;
+    }
+  }
+  #sms-nav {
+    height: 370px;
+    margin: 15px 0;
+    border-right: 1px solid #efefef;
+    li {
+      &.active a {
+        background-color: #f0ad4e;
+      }
+    }
+  }
+}
+.speech-bubble {
+  position:relative;
+  padding:15px;
+  margin:1em 0 2.5em;
+  color:#000;
+  background:#f3961c;
+  -webkit-border-radius:10px;
+  -moz-border-radius:10px;
+  border-radius:10px;
+  &:after {
+    content:"";
+    position:absolute;
+    display:block;
+    width:0;
+    border-style:solid;
+  }
+  &.incoming {
+    background-color: $blue;
+    border-color: #2e6da4;
+    color: #efefef;
+    &:after {
+      top:-15px; /* value = - border-top-width - border-bottom-width */
+      right:50px; /* controls horizontal position */
+      bottom:auto;
+      left:auto;
+      border-width:0 15px 15px; /* vary these values to change the angle of the vertex */
+      border-color: $blue transparent;
+    }
+
+  }
+  &.outgoing {
+    background-color: #bdbdbd;
+    border-color: #777777;
+    color: #777777;
+    &:after {
+      bottom:-15px; /* value = - border-top-width - border-bottom-width */
+      left:50px; /* controls horizontal position */
+      border-width:15px 15px 0; /* vary these values to change the angle of the vertex */
+      border-color: #bdbdbd transparent;
+      /* reduce the damage in FF3.0 */
+
+    }
+  }
+}
+
+

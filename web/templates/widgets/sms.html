@@ -1,0 +1,21 @@
+<div id="sms-container" class="col-md-8 col-md-offset-3 bordered-container">
+    <ul id="sms-nav" class="nav nav-pills nav-stacked col-md-2">
+        <li role="presentation" class="active"><a href="">John Smith</a></li>
+        <li role="presentation" class=""><a href="">James Bond</a></li>
+        <li role="presentation" class=""><a href="">Sally Mae</a></li>
+    </ul>
+    <div id="sms-messages" class="col-md-10">
+        <div class="messages">
+            <p class="speech-bubble outgoing">This is an outgoing text</p>
+            <p class="speech-bubble incoming">This is an incoming text</p>
+            <p class="speech-bubble incoming"><img src="http://placehold.it/150x150" alt=""/></p>
+        </div>
+        <form class="form sms-form" method="post">
+            <div class="form-group">
+                <label class="sr-only" for="sms-reply">Reply</label>
+                <textarea type="text" class="form-control" id="sms-reply" placeholder=""></textarea>
+            </div>
+            <button type="submit" class="btn btn-info">Send</button>
+        </form>
+    </div>
+</div>
