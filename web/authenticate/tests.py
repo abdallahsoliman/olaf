@@ -1,12 +1,11 @@
-from django.test import TestCase, Client
+from django.test import TestCase
 from authenticate.factories import UserFactory
 from django.contrib.auth import authenticate
 from models import User
 
 class UserTestCase(TestCase):
     def setUp(self):
-        #self.user = UserFactory.create()
-        self.user = User.objects.create(first_name="bob", last_name="bill", password="password123", email="bill@example.com")
+        self.user = UserFactory.create()
 
     def test_can_create_user(self):
         self.assertIsNotNone(self.user.first_name)
@@ -15,7 +14,4 @@ class UserTestCase(TestCase):
         self.assertIsNotNone(self.user.password)
 
     def test_can_authenticate_user(self):
-    	client = Client()
-    	print User.objects.get(email=self.user.email).password
-    	print authenticate(email=self.user.email, password='password123')
-        print client.login(email=self.user.email, password='password123')
+        self.assertEqual(authenticate(email=self.user.email, password='password123').email, self.user.email)

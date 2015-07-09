@@ -92,7 +92,7 @@ MIDDLEWARE_CLASSES = (
 
 
 ########## URL CONFIGURATION
-#ROOT_URLCONF = '%s.urls' % SITE_NAME
+ROOT_URLCONF = '%s.urls' % SITE_NAME
 ########## END URL CONFIGURATION
 
 
@@ -116,7 +116,7 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     # Static file management:
     'compressor',
-    'tastypie'
+    'rest_framework',
 )
 LOCAL_APPS = (
     'olaf',
@@ -159,3 +159,11 @@ AUTH_USER_MODEL = 'authenticate.User'
 ########## SECRET CONFIGURATION
 SECRET_KEY = environ['SECRET_KEY']
 ########## END SECRET CONFIGURATION
+
+########## DJANGO REST FRAMEWORK CONFIGURATION
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+########## END DJANGO REST FRAMEWORK CONFIGURATION
