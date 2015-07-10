@@ -28,7 +28,7 @@ class User(AbstractBaseUser):
 
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    email = models.EmailField(unique=True)
+    email = models.EmailField(db_index=True, unique=True)
     phone_number = models.CharField(validators=[phone_regex], max_length=20, blank=True)
 
     objects = UserManager()
@@ -40,6 +40,3 @@ class User(AbstractBaseUser):
 
     def get_full_name(self):
         return "%s %s" % (self.first_name, self.last_name)
-
-    def __unicode__(self):
-        return self.email

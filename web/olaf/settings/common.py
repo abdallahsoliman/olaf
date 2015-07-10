@@ -60,12 +60,12 @@ STATICFILES_FINDERS = (
 
 ########## TEMPLATE CONFIGURATION
 TEMPLATE_CONTEXT_PROCESSORS = (
-    'OOcontext_processors.auth',
     'django.core.context_processors.debug',
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
     'django.core.context_processors.static',
     'django.core.context_processors.tz',
+    'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request',
 )
@@ -121,6 +121,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'olaf',
     'authenticate',
+    'sms',
 )
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 ########## END APP CONFIGURATION
@@ -163,7 +164,7 @@ SECRET_KEY = environ['SECRET_KEY']
 ########## DJANGO REST FRAMEWORK CONFIGURATION
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.IsAuthenticated'
     ]
 }
 ########## END DJANGO REST FRAMEWORK CONFIGURATION
