@@ -117,6 +117,7 @@ THIRD_PARTY_APPS = (
     # Static file management:
     'compressor',
     'rest_framework',
+    'rest_framework.authtoken',
 )
 LOCAL_APPS = (
     'olaf',
@@ -163,8 +164,11 @@ SECRET_KEY = environ['SECRET_KEY']
 
 ########## DJANGO REST FRAMEWORK CONFIGURATION
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated'
-    ]
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
 }
 ########## END DJANGO REST FRAMEWORK CONFIGURATION
