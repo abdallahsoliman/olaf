@@ -1,4 +1,4 @@
-package com.soliman.olaf;
+package io.soliman.olaf;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -6,8 +6,10 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -16,6 +18,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,6 +29,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,15 +50,8 @@ import java.util.List;
 /**
  * A login screen that offers login via email/password.
  */
-public class  LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
+public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -150,7 +160,7 @@ public class  LoginActivity extends Activity implements LoaderCallbacks<Cursor> 
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return password.length() > 5;
     }
 
     /**
@@ -259,25 +269,32 @@ public class  LoginActivity extends Activity implements LoaderCallbacks<Cursor> 
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
+            // TODO: cleanup this method
+
+            // setup http post request for api login
+            HttpClient httpClient = new DefaultHttpClient();
+            HttpPost loginPost = new HttpPost("http://192.168.1.4:8000/api/auth/token/");
+            List<NameValuePair> loginCredentials = new ArrayList<NameValuePair>(2);
+            loginCredentials.add(new BasicNameValuePair("username", mEmail));
+            loginCredentials.add(new BasicNameValuePair("password", mPassword));
 
             try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
+                loginPost.setEntity(new UrlEncodedFormEntity(loginCredentials));
+                HttpResponse response = httpClient.execute(loginPost);
+                JSONObject jsonResponse = new JSONObject(EntityUtils.toString(response.getEntity()));
+
+                // save token in shared preferences
+                SharedPreferences settings = getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putString("token", jsonResponse.getString("token"));
+                editor.commit();
+
+                return true;
+            }
+            catch (Exception e) {
+                e.printStackTrace();
                 return false;
             }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
-
-            // TODO: register the new account here.
-            return true;
         }
 
         @Override
