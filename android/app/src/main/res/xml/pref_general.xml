@@ -1,0 +1,9 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <CheckBoxPreference
+        android:key="enable_sms_listener"
+        android:title="@string/pref_title_sms_listener"
+        android:summary="@string/pref_description_sms_listener"
+        android:defaultValue="true" />
+
+</PreferenceScreen>
