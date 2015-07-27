@@ -7,10 +7,22 @@ import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SMSReceiver extends BroadcastReceiver {
     public SMSReceiver() {
         final SmsManager sms = SmsManager.getDefault();
+
+        // setup http post request for api login
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpPost loginPost = new HttpPost("http://localhost:8000/api/messages/");
     }
 
     @Override
@@ -28,7 +40,14 @@ public class SMSReceiver extends BroadcastReceiver {
                     String senderNum = msg.getDisplayOriginatingAddress();
                     String msgBody = msg.getDisplayMessageBody();
 
+                    List<NameValuePair> sms = new ArrayList<NameValuePair>(2);
+                    sms.add(new BasicNameValuePair("sender", senderNum));
+                    sms.add(new BasicNameValuePair("message", msgBody));
+
+
                     Log.i("SMSReceiver", "Sender: " + senderNum + "; msg: " + msgBody);
+
+
                 }
             }
         }

@@ -2,6 +2,7 @@ package io.soliman.olaf;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -70,6 +71,7 @@ public class SettingsActivity extends PreferenceActivity {
             if (preference instanceof CheckBoxPreference) {
                 CheckBoxPreference checkBoxPreference = (CheckBoxPreference)preference;
                 // TODO: enable or disable services
+
             }
 
             return true;
