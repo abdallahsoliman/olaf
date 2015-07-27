@@ -1,5 +1,6 @@
-from django.db import models
+import re
 from django.core.validators import RegexValidator
+from django.db import models
 from authenticate.models import User
 
 class Contact(models.Model):
@@ -12,17 +13,20 @@ class Contact(models.Model):
         return (contact is not None)
 
     def has_number(self, number):
-        number = self.phonenumber_set.filter(number=number).first()
+        number = PhoneNumber.format_number(number)
+        number = self.phone_numbers.filter(number=number).first()
         return (number is not None)
 
     @classmethod
     def create_or_add_number(cls, user, name, number):
         contact = cls.objects.filter(name=name).first()
-        if (contact is not None and not contact.has_number(number)):
-            number = PhoneNumber.objects.create(contact=contact, number=number)
-        elif (contact is None):
+
+        if (contact is None):
             contact = Contact.objects.create(user=user, name=name)
-            PhoneNumber.objects.create(contact=contact, number=number)
+
+        phone_number = PhoneNumber(contact=contact, number=PhoneNumber.format_number(number))
+        phone_number.full_clean()
+        phone_number.save()
 
         return contact
 
@@ -35,7 +39,21 @@ class PhoneNumber(models.Model):
     number = models.CharField(validators=[phone_regex], max_length=20, blank=True)
 
     class Meta:
+        default_related_name = "phone_numbers"
         unique_together = ("contact", "number")
+
+    def __unicode__(self):
+        return self.number
+
+    @classmethod
+    def format_number(cls, number):
+        # TODO: improve regex
+        number = "".join(re.findall('\d+', number))[:15]
+        if len(number) == 9:
+            number = "+1%s" % number
+        else:
+            number = "+%s" % number
+        return number
 
 class Message(models.Model):
     sender = models.ForeignKey(Contact)

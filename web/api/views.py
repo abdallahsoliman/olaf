@@ -1,5 +1,7 @@
 from rest_framework import viewsets, generics
-from django.http import HttpResponse
+from rest_framework.response import Response
+from django.core.exceptions import ValidationError
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotModified
 from authenticate.models import User
 from sms.models import Message, Contact
 from api import serializers
@@ -24,5 +26,11 @@ class ContactViewSet(viewsets.ModelViewSet):
         return Contact.objects.filter(user=self.request.user)
 
     def create(self, request):
-        contact = Contact.create_or_add_number(self.request.user, request.POST["name"], request.POST["number"])
-        return contact
+        try:
+            contact = Contact.create_or_add_number(self.request.user, request.POST["name"], request.POST["number"])
+            return Response(serializers.ContactSerializer(contact).data, status=201)
+        except ValidationError, ex:
+            if "__all__" in ex.message_dict:
+                return HttpResponseNotModified()
+            else:
+                return HttpResponseBadRequest("%s is not a valid number" % request.POST["number"])
