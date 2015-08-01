@@ -1,4 +1,5 @@
 var express = require('express');
+var session = require('express-session');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -17,6 +18,14 @@ app.io = require('socket.io')();
 app.set('views', path.join(__dirname, 'views'));
 app.engine('hbs', hbs({defaultLayout: 'main', extname: 'hbs'}));
 app.set('view engine', 'hbs');
+
+// for sessions in express
+app.use(session({
+    secret: "5A67888C463D8CBD45F7614E91532",
+    name: "olaf-realtime",
+    resave: true,
+    saveUninitialized: true
+}));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
