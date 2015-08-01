@@ -4,17 +4,29 @@ import android.app.IntentService;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
+import android.util.Log;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
  * a service on a separate handler thread.
- * <p/>
- * TODO: Customize class - update intent actions, extra parameters and static
  * helper methods.
  */
 public class ContactService extends IntentService {
@@ -22,6 +34,7 @@ public class ContactService extends IntentService {
     // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
     private static final String ACTION_UPLOAD_CONTACTS = "io.soliman.olaf.action.UPLOAD_CONTACTS";
     private static final String ACTION_RESOLVE_CONTACT = "io.soliman.olaf.action.RESOLVE_CONTACT";
+    private API api;
 
     /**
      * Starts this service to perform action Upload Contacts with the given parameters. If
@@ -29,15 +42,21 @@ public class ContactService extends IntentService {
      *
      * @see IntentService
      */
-    // TODO: Customize helper method
     public static void startActionUploadContacts(Context context) {
         Intent intent = new Intent(context, ContactService.class);
         intent.setAction(ACTION_UPLOAD_CONTACTS);
         context.startService(intent);
     }
 
-    public ContactService() {
+    public ContactService()
+    {
         super("ContactService");
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        this.api = new API(this);
     }
 
     @Override
@@ -67,11 +86,13 @@ public class ContactService extends IntentService {
         Cursor cursor = contentResolver.query(CONTENT_URI, null, null, null, null);
 
         if (cursor.getCount() > 0) {
+
+            List<NameValuePair> contactData = new ArrayList<NameValuePair>(2);
+
             while (cursor.moveToNext()) {
                 String name = cursor.getString(cursor.getColumnIndex(DISPLAY_NAME));
                 String contactID = cursor.getString(cursor.getColumnIndex(ID));
                 int hasPhoneNumber = Integer.parseInt(cursor.getString(cursor.getColumnIndex(HAS_PHONE_NUMBER)));
-
 
                 if (hasPhoneNumber > 0) {
                     Cursor phoneCursor = contentResolver.query(
@@ -80,8 +101,10 @@ public class ContactService extends IntentService {
 
                     while (phoneCursor.moveToNext()) {
                         String phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(NUMBER));
-                        phoneCursor.close();
+                        this.api.createContact(name, phoneNumber);
                     }
+                    // cleanup
+                    phoneCursor.close();
                 }
             }
             cursor.close();

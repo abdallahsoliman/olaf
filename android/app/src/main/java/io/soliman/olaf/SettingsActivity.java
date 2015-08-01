@@ -1,7 +1,12 @@
 package io.soliman.olaf;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.media.Ringtone;
@@ -15,6 +20,7 @@ import android.util.Log;
 
 
 import java.util.List;
+import java.util.prefs.PreferenceChangeListener;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -41,24 +47,32 @@ public class SettingsActivity extends PreferenceActivity {
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        setupSimplePreferencesScreen();
+        FragmentManager mFragmentManager = getFragmentManager();
+        FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
+        GeneralPreferenceFragment generalPreferenceFragment = new GeneralPreferenceFragment();
+        mFragmentTransaction.replace(android.R.id.content, generalPreferenceFragment);
+        mFragmentTransaction.commit();
+
     }
 
-    /**
-     * Shows the simplified settings UI if the device configuration if the
-     * device configuration dictates that a simplified, single-pane UI should be
-     * shown.
-     */
-    private void setupSimplePreferencesScreen() {
+    public static class GeneralPreferenceFragment extends PreferenceFragment {
 
-        // In the simplified UI, fragments are not used at all and we instead
-        // use the older PreferenceActivity APIs.
+        Context context;
 
-        // Add 'general' preferences.
-        addPreferencesFromResource(R.xml.pref_general);
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
 
-        bindToEnableServiceListener(findPreference("enable_sms_listener"));
+            this.context = getActivity();
 
+            // Load the preferences from an XML resource
+            addPreferencesFromResource(R.xml.pref_general);
+
+            // bind listeners to their preferences
+            bindToEnableServiceListener(findPreference("enable_sms_listener"));
+            findPreference("resynchronize_contacts").setOnPreferenceClickListener(
+                    new ResynchronizeContactListener(context));
+        }
     }
 
     /**
@@ -70,13 +84,48 @@ public class SettingsActivity extends PreferenceActivity {
 
             if (preference instanceof CheckBoxPreference) {
                 CheckBoxPreference checkBoxPreference = (CheckBoxPreference)preference;
-                // TODO: enable or disable services
+                if (checkBoxPreference.getKey().equals("enable_sms_listener")) {
+                    // TODO: toggle sms service
+                }
 
             }
-
             return true;
         }
     };
+
+    private static class ResynchronizeContactListener implements  Preference.OnPreferenceClickListener {
+
+        Context context;
+
+        public ResynchronizeContactListener(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        public boolean onPreferenceClick(Preference preference) {
+
+            new AlertDialog.Builder(context)
+                .setTitle("Resynchronize Contacts")
+                .setMessage("Are you sure you want to resynchronize your contacts?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.i("Contact", "Resynchronization requested.");
+                        ContactService.startActionUploadContacts(context);
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+
+            return true;
+        }
+    }
 
 
     private static void bindToEnableServiceListener(Preference preference) {

@@ -6,4 +6,9 @@
         android:summary="@string/pref_description_sms_listener"
         android:defaultValue="true" />
 
+    <Preference
+        android:key = "resynchronize_contacts"
+        android:title="@string/pref_title_resynchronize_contacts"
+        android:summary="@string/pref_description_resynchronize_contacts" />
+
 </PreferenceScreen>

@@ -64,10 +64,24 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     private View mProgressView;
     private View mLoginFormView;
 
+    // settings file
+    private API api;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        // create an api instance
+        api = new API(getApplicationContext());
+
+        if (api.isLoggedIn()) {
+            // open settings screen
+            Intent settingsActivityIntent = new Intent(LoginActivity.this, SettingsActivity.class);
+            settingsActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            getApplicationContext().startActivity(settingsActivityIntent);
+            finish();
+        }
 
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -270,32 +284,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: cleanup this method
-
-            // setup http post request for api login
-            HttpClient httpClient = new DefaultHttpClient();
-            HttpPost loginPost = new HttpPost("http://192.168.1.4:8000/api/auth/token/");
-            List<NameValuePair> loginCredentials = new ArrayList<NameValuePair>(2);
-            loginCredentials.add(new BasicNameValuePair("username", mEmail));
-            loginCredentials.add(new BasicNameValuePair("password", mPassword));
-
-            try {
-                loginPost.setEntity(new UrlEncodedFormEntity(loginCredentials));
-                HttpResponse response = httpClient.execute(loginPost);
-                JSONObject jsonResponse = new JSONObject(EntityUtils.toString(response.getEntity()));
-
-                // save token in shared preferences
-                SharedPreferences settings = getPreferences(Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = settings.edit();
-                editor.putString("token", jsonResponse.getString("token"));
-                editor.commit();
-
-                return true;
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-                return false;
-            }
+            return api.login(mEmail, mPassword);
         }
 
         @Override
@@ -304,10 +293,13 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             showProgress(false);
 
             if (success) {
+                // synchronize contacts
+                ContactService.startActionUploadContacts(LoginActivity.this);
 
-                Intent intent = new Intent(LoginActivity.this, SettingsActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                getApplicationContext().startActivity(intent);
+                // open settings screen
+                Intent settingsActivityIntent = new Intent(LoginActivity.this, SettingsActivity.class);
+                settingsActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getApplicationContext().startActivity(settingsActivityIntent);
 
                 finish();
             } else {
