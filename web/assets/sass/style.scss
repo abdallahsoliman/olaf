@@ -97,21 +97,25 @@ ul {
   padding-top: 10px;
 }
 #sms-container {
-  height: 400px;
+  height: 100%;
   .sms-form {
     margin-top: -10px;
     button { float: right; }
   }
   #sms-messages {
     padding-right: 0px;
+    margin-bottom: 20px;
     .messages {
-      height: 275px;
+      height: 70%;
       margin-bottom: 10px;
       overflow-y: scroll;
+      .message {
+        width: 100%;
+      }
     }
   }
   #sms-nav {
-    height: 370px;
+    height: 100%;
     margin: 15px 0;
     border-right: 1px solid #efefef;
     li {
@@ -124,12 +128,13 @@ ul {
 .speech-bubble {
   position:relative;
   padding:15px;
-  margin:1em 0 2.5em;
+  margin:1em 0 0;
   color:#000;
   background:#f3961c;
   -webkit-border-radius:10px;
   -moz-border-radius:10px;
   border-radius:10px;
+  display: block;
   &:after {
     content:"";
     position:absolute;
@@ -141,11 +146,8 @@ ul {
     background-color: $blue;
     border-color: #2e6da4;
     color: #efefef;
+    float: right;
     &:after {
-      top:-15px; /* value = - border-top-width - border-bottom-width */
-      right:50px; /* controls horizontal position */
-      bottom:auto;
-      left:auto;
       border-width:0 15px 15px; /* vary these values to change the angle of the vertex */
       border-color: $blue transparent;
     }
@@ -155,9 +157,8 @@ ul {
     background-color: #bdbdbd;
     border-color: #777777;
     color: #777777;
+    float: left;
     &:after {
-      bottom:-15px; /* value = - border-top-width - border-bottom-width */
-      left:50px; /* controls horizontal position */
       border-width:15px 15px 0; /* vary these values to change the angle of the vertex */
       border-color: #bdbdbd transparent;
       /* reduce the damage in FF3.0 */
@@ -165,5 +166,3 @@ ul {
     }
   }
 }
-
-

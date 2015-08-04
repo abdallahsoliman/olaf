@@ -7,16 +7,16 @@ from django.contrib.messages import constants as message_constants
 
 ########## PATH CONFIGURATION
 # Absolute filesystem path to the Django project directory:
-DJANGO_ROOT = dirname(dirname(abspath(__file__)))
+APP_ROOT = dirname(dirname(abspath(__file__)))
 
 # Absolute filesystem path to the top-level project folder:
-SITE_ROOT = dirname(DJANGO_ROOT)
+DJANGO_ROOT = dirname(APP_ROOT)
 
 # Site name:
-SITE_NAME = basename(DJANGO_ROOT)
+SITE_NAME = basename(APP_ROOT)
 
 # Add our project to our pythonpath, this way we don't need to type our project name in our dotted import paths:
-path.append(DJANGO_ROOT)
+path.append(APP_ROOT)
 ########## END PATH CONFIGURATION
 
 
@@ -59,6 +59,10 @@ STATICFILES_FINDERS = (
 
 
 ########## TEMPLATE CONFIGURATION
+TEMPLATE_DIRS = (
+    join(DJANGO_ROOT, 'templates'),
+)
+
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.debug',
     'django.core.context_processors.i18n',
@@ -126,6 +130,10 @@ LOCAL_APPS = (
 )
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 ########## END APP CONFIGURATION
+
+########## START SESSION ENGINE CONFIGURATION
+SESSION_ENGINE = "sessions.redis_session_store"
+########## END SESSION ENGINE CONFIGURATION
 
 
 ########## LOGGING CONFIGURATION
