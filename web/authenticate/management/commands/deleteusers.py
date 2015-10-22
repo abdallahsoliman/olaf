@@ -3,7 +3,7 @@ from django.core.management.base import BaseCommand, CommandError
 from authenticate.models import User
 
 class Command(BaseCommand):
-    help = "Creates 'x' new users. Only for development environment."
+    help = "Deletes all users. Only for development environment."
 
     def handle(self, *args, **options):
 
