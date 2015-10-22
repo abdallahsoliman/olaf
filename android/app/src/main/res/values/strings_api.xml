@@ -1,6 +1,0 @@
-<resources>
-    <string name="sp_auth_token_key">auth-token</string>
-    <string name="root_api_url">10.0.2.2:8000/api/</string>
-    <string name="login_path">auth/token/</string>
-    <string name="contact_path">contacts/</string>
-</resources>
