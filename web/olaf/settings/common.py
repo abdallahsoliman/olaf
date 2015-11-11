@@ -122,12 +122,14 @@ THIRD_PARTY_APPS = (
     'compressor',
     'rest_framework',
     'rest_framework.authtoken',
+    'swampdragon',
 )
 LOCAL_APPS = (
     'olaf',
     'authenticate',
     'sms',
     'dorm',
+    'health',
 )
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 ########## END APP CONFIGURATION
@@ -181,3 +183,5 @@ REST_FRAMEWORK = {
     )
 }
 ########## END DJANGO REST FRAMEWORK CONFIGURATION
+
+SWAMP_DRAGON_CONNECTION = ('swampdragon.connections.sockjs_connection.DjangoSubscriberConnection', '/data')
