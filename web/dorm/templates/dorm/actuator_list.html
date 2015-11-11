@@ -1,15 +1,8 @@
 {% extends "olaf/base.html" %}
 {% block content %}
 <div class="row">
-    <div class="col m5">
-        <div class="card darken-4">
-            <div class="card-content">
-                <span class="card-title black-text">Door Lock</span>
-                <a class="waves-effect waves-light btn-large red darken-4 pull-right" href="">
-                    Unlock <i class="material-icons">lock</i>
-                </a>
-            </div>
-        </div>
-    </div>
+{% for actuator in actuators %}
+    {% include "dorm/actuator_card.html" %}
+{% endfor %}
 </div>
 {% endblock %}

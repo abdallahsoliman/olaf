@@ -6,6 +6,8 @@ class ActuatorType(models.Model):
     command_off = models.CharField(max_length=255)
     on_state_name = models.CharField(max_length=50)
     off_state_name = models.CharField(max_length=50)
+    on_state_icon = models.CharField(max_length=80)
+    off_state_icon = models.CharField(max_length=80)
 
 class Actuator(models.Model):
     name = models.CharField(max_length=255, unique=True)

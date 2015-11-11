@@ -25,6 +25,8 @@ class Lamp(factory.django.DjangoModelFactory):
     command_off = "sudo off"
     on_state_name = "on"
     off_state_name = "off"
+    on_state_icon = "sun-o"
+    off_state_icon = "moon-o"
 
 
 class Lock(factory.django.DjangoModelFactory):
@@ -32,11 +34,12 @@ class Lock(factory.django.DjangoModelFactory):
         model = models.ActuatorType
 
     name = "Lock"
-    command_on = "sudo open"
-    command_off = "sudo close"
-    on_state_name = "locked"
-    off_state_name = "unlocked"
-
+    command_on = "sudo lock"
+    command_off = "sudo unlock"
+    on_state_name = "unlocked"
+    off_state_name = "locked"
+    on_state_icon = "unlock"
+    off_state_icon = "lock"
 
 class ActuatorFactory(factory.django.DjangoModelFactory):
     class Meta:

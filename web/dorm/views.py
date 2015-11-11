@@ -3,9 +3,11 @@ from django.views.generic import TemplateView, ListView
 from dorm.models import Actuator
 
 class ActuatorView(ListView):
+    context_object_name = 'actuators'
     template_name="dorm/actuator_list.html"
 
     def get_queryset(self):
+        print Actuator.objects.all()
         return Actuator.objects.all()
 
 class DormView(TemplateView):
