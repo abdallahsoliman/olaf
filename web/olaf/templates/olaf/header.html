@@ -1,9 +1,13 @@
-<nav class="blue accent-4">
-    <div class="nav-wrapper">
-        <a href="#" class="brand-logo">OLAF</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="">Doors</a></li>
-            <li><a href="">Lights</a></li>
-        </ul>
+<header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">OLAF</span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+        <!-- Navigation. We hide it in small screens. -->
+        <nav class="mdl-navigation mdl-layout--large-screen-only">
+            <a class="mdl-navigation__link" href="{% url 'dorm' %}">Dorm</a>
+            <a class="mdl-navigation__link" href="{% url 'health' %}">Health</a>
+        </nav>
     </div>
-</nav>
+</header>
