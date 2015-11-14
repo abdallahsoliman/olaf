@@ -46,7 +46,7 @@ class ActuatorFactory(factory.django.DjangoModelFactory):
         model = models.Actuator
 
     name = factory.Sequence(lambda n: "Device #%s" % (n))
-    state = FuzzyBoolean().fuzz()
+    state = factory.LazyAttribute(lambda t: FuzzyBoolean().fuzz())
 
     @classmethod
     def _create(cls, model_class, *args, **kwargs):
