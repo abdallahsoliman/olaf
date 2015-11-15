@@ -1,11 +1,14 @@
 {% extends "olaf/base.html" %}
 {% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'health/css/health.css' %}"></link>
+{% endblock %}
 {% block content %}
 <div class="mdl-grid">    
     <div id="heart-rate-graph" class="mdl-cell mdl-cell--middle mdl-cell--6-col"></div>
 </div>
 {% endblock %}
 {% block js %}
-<script>var data=[45, 56, 54, 45, 39, 23, 45, 33]</script>
+<script>var data={{ heart_rates | safe }}</script>
 <script src="{% static 'health/js/health.js' %}"></script>
 {% endblock %}
