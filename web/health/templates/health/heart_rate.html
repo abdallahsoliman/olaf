@@ -1,8 +1,11 @@
 {% extends "olaf/base.html" %}
+{% load static %}
 {% block content %}
-<div>    
-    {% for rate in heart_rates %}
-        {{ rate.value }}
-    {% endfor%}
+<div class="mdl-grid">    
+    <div id="heart-rate-graph" class="mdl-cell mdl-cell--middle mdl-cell--6-col"></div>
 </div>
+{% endblock %}
+{% block js %}
+<script>var data=[45, 56, 54, 45, 39, 23, 45, 33]</script>
+<script src="{% static 'health/js/health.js' %}"></script>
 {% endblock %}

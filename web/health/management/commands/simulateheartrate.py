@@ -2,12 +2,13 @@ from django.core.management.base import BaseCommand, CommandError
 from health.factories import HeartRateFactory
 from random import randint
 from time import sleep
+from os import environ
 
 class Command(BaseCommand):
     help = 'simulates heart rate monitor data feed'
 
     def handle(self, *args, **options):
-        
+
         if environ['DJANGO_SETTINGS_MODULE'] != "olaf.settings.dev":
             raise CommandError('This command can only be run in the development environment')
 

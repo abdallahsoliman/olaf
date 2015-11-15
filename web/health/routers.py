@@ -8,6 +8,9 @@ class HeartRateRouter(ModelRouter):
     serializer_class = HeartRateSerializer
     model = HeartRate
 
+    def get_object(self, **kwargs):
+        return self.model.objects.get(pk=kwargs['id'])
+
     def get_query_set(self, **kwargs):
         return self.model.objects.all()
 
