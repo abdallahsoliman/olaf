@@ -1,12 +1,5 @@
-path {
-  stroke: steelblue;
-  stroke-width: 2;
-  fill: none; }
-
-.axis path, .axis line {
-  fill: none;
-  stroke: grey;
-  stroke-width: 1;
-  shape-rendering: crispEdges; }
+#heart-rate-graph {
+  height: 400px;
+  width: 800px; }
 
 /*# sourceMappingURL=health.css.map */

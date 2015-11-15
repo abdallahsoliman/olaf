@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAAA,IAAK;EACD,MAAM,EAAE,SAAS;EACjB,YAAY,EAAE,CAAC;EACf,IAAI,EAAE,IAAI;;AAIV,sBAAe;EACX,IAAI,EAAE,IAAI;EACV,MAAM,EAAE,IAAI;EACZ,YAAY,EAAE,CAAC;EACf,eAAe,EAAE,UAAU",
+"mappings": "AAAA,iBAAkB;EACd,MAAM,EAAE,KAAK;EACb,KAAK,EAAE,KAAK",
 "sources": ["../../../assets/health/scss/health.scss"],
 "names": [],
 "file": "health.css"

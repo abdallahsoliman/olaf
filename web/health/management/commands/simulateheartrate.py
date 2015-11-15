@@ -18,7 +18,7 @@ class Command(BaseCommand):
             try:
                 hr = HeartRateFactory.create(base_rate=base_rate)
                 print hr.value
-                sleep(4)
+                sleep(1)
             except KeyboardInterrupt:
                 print "Exiting Heart Rate Simulator"
                 break
