@@ -7,7 +7,6 @@ class ActuatorView(ListView):
     template_name="dorm/actuator_list.html"
 
     def get_queryset(self):
-        print Actuator.objects.all()
         return Actuator.objects.all()
 
 class DormView(TemplateView):

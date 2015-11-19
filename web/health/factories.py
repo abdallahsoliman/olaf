@@ -1,10 +1,7 @@
 from factory.django import DjangoModelFactory
 from factory.fuzzy import FuzzyInteger, _random
 from factory import LazyAttribute
-from faker import Faker
 from . import models
-
-fake = Faker()
 
 class FuzzyHeartRate(FuzzyInteger):
 

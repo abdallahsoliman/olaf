@@ -1,9 +1,7 @@
 import factory
 from factory.fuzzy import _random as random
-from faker import Faker
 from . import models
 
-fake = Faker()
 
 class FuzzyBoolean(factory.fuzzy.BaseFuzzyAttribute):
     def fuzz(self):

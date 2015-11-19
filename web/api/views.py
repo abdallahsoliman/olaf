@@ -29,7 +29,7 @@ class ContactViewSet(viewsets.ModelViewSet):
         try:
             contact = Contact.create_or_add_number(self.request.user, request.POST["name"], request.POST["number"])
             return Response(serializers.ContactSerializer(contact).data, status=201)
-        except ValidationError, ex:
+        except ValidationError as ex:
             if "__all__" in ex.message_dict:
                 return HttpResponseNotModified()
             else:
