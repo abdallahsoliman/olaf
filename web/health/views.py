@@ -10,3 +10,9 @@ class HeartRateView(ListView):
     def get_queryset(self):
         return [HeartRateSerializer(instance=heart_rate).serialize() for heart_rate in HeartRate.objects.all()]
 
+    def start_heart_rate_monitor(self):
+        pass
+
+    def stop_heart_rate_monitor(self):
+        pass
+

@@ -34,9 +34,24 @@
     data: [
       {
         label: 'Heart Rate',
-        values: formatHeartRateData(data)
+        values: formatHeartRateData(data),
+        range: [0, 100],
+        ticks: {
+          left: 10
+        }
       }
-    ]
+    ],
+    axes: ['bottom', 'left'],
+    ticks: {
+      bottom: 10,
+      left: 5
+    },
+    margins: {
+      top: 25,
+      right: 25,
+      bottom: 25,
+      left: 25
+    }
   });
 
   formatHeartRateData(data);

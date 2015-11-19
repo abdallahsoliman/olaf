@@ -4,8 +4,9 @@
 <link rel="stylesheet" href="{% static 'health/css/health.css' %}"></link>
 {% endblock %}
 {% block content %}
-<div class="mdl-grid">    
-    <div id="heart-rate-graph" class="epoch mdl-cell mdl-cell--middle mdl-cell--6-col"></div>
+<div class="heart-rate">
+    <h3>Heart Rate</h3>
+    <div id="heart-rate-graph" class="epoch"></div>
 </div>
 {% endblock %}
 {% block js %}

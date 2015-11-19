@@ -1,6 +1,6 @@
 """ Test Settings and Globals """
 
-from common import *
+from .common import *
 
 ########## DEBUG CONFIGURATION
 DEBUG = True
@@ -22,7 +22,6 @@ DATABASES = {
 ########## APP CONFIGURATION
 THIRD_PARTY_APPS = (
     "factory",
-    "faker",
 )
 INSTALLED_APPS += THIRD_PARTY_APPS
 ########## END APP CONFIGURATION

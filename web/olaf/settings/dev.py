@@ -1,6 +1,6 @@
 """ Development Settings and Globals """
 
-from common import *
+from .common import *
 
 ########## DEBUG CONFIGURATION
 DEBUG = True
