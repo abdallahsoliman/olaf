@@ -1,5 +1,29 @@
-{% extends 'base.html' %}
-
+{% extends 'olaf/base.html' %}
+{% load static %}
+{% load form_filters %} 
+{% block title %}Login{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'authenticate/css/authenticate.css' %}">
+{% endblock %}
 {% block content %}
-<h1>This is a login page</h1>
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--4-col">
+        <form id="form-login" method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div aria-live="assertive" aria-atomic="true" aria-relevant="text" class="mdl-js-snackbar">
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ form.username.errors | add_error_class }}">
+                <label class="mdl-textfield__label" for="id_username">Email Address</label>
+                {{ form.username }}
+                <span class="mdl-textfield__error">{{ form.username.errors | display_errors }}</span>
+            </div> 
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ form.password.errors | add_error_class }}">
+                {{ form.password }}
+                <label class="mdl-textfield__label" for="id_password">Password</label>
+                <span class="mdl-textfield__error">{{ form.password.errors | display_errors }}</span>
+            </div> 
+            <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised">Login</button>
+        </form>
+    </div>
+</div>
 {% endblock %}

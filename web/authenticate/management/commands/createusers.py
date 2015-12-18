@@ -13,6 +13,6 @@ class Command(BaseCommand):
         if environ['DJANGO_SETTINGS_MODULE'] != "olaf.settings.dev":
             raise CommandError('This command can only be run in the development environment')
 
-        for i in xrange(0, options['num_users']):
+        for i in range(0, options['num_users']):
             UserFactory.create()
 
