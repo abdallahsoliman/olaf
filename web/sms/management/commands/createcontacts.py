@@ -15,8 +15,8 @@ class Command(BaseCommand):
         if environ['DJANGO_SETTINGS_MODULE'] != "olaf.settings.dev":
             raise CommandError('This command can only be run in the development environment')
 
+        user = User.objects.get(id=options['user_id'])
         for i in range(options['num_contacts']):
-            user = User.objects.get(id=options['user_id'])
             contact = ContactFactory.create(user=user)
             PhoneNumberFactory.create(contact=contact)
 

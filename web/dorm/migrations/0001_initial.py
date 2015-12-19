@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import models, migrations
+from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
@@ -13,20 +13,22 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Actuator',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=255)),
+                ('id', models.AutoField(serialize=False, auto_created=True, primary_key=True, verbose_name='ID')),
+                ('name', models.CharField(max_length=255, unique=True)),
                 ('state', models.BooleanField(default=False)),
             ],
         ),
         migrations.CreateModel(
             name='ActuatorType',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=100)),
+                ('id', models.AutoField(serialize=False, auto_created=True, primary_key=True, verbose_name='ID')),
+                ('name', models.CharField(max_length=100, unique=True)),
                 ('command_on', models.CharField(max_length=255)),
                 ('command_off', models.CharField(max_length=255)),
                 ('on_state_name', models.CharField(max_length=50)),
                 ('off_state_name', models.CharField(max_length=50)),
+                ('on_state_icon', models.CharField(max_length=80)),
+                ('off_state_icon', models.CharField(max_length=80)),
             ],
         ),
         migrations.AddField(

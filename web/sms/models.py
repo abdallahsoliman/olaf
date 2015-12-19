@@ -58,5 +58,5 @@ class PhoneNumber(models.Model):
 class Message(models.Model):
     sender = models.ForeignKey(Contact)
     user = models.ForeignKey(User)
-    content = models.CharField(max_length=160)
+    content = models.CharField(max_length=1000)
     received_at = models.DateTimeField(auto_now_add=True)
