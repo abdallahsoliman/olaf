@@ -1,0 +1,8 @@
+{% extends 'olaf/base.html' %}
+{% block title %}SMS{% endblock %}
+
+{% block content %}
+{% for contact in contacts %}
+    {% include "olaf/message_list.html" %} 
+{% endfor %}
+{% endblock %}
