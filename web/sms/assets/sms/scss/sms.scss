@@ -7,9 +7,20 @@
         color: #fff;
         height: 10vh;
         background-color: #4ab367;
-        
+        display: table;
+
+        .contact-header {
+            width: 100%;
+            display: table-cell;
+            vertical-align: middle;
+            padding-left: 20px;
+            font-size: 20px;
+        }        
+ 
         .mdl-button {
             float: right;
+            height: 100%;
+            margin-right: 10px;
         }
     }
 
@@ -20,7 +31,8 @@
 
     .footer {
         height: 15vh;
-        
+        border-top: 1px solid;
+ 
         .send-message-form {
             padding: 10px;
         }
