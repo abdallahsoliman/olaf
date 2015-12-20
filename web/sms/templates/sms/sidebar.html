@@ -1,0 +1,8 @@
+<div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Contacts</span>
+    <nav class="mdl-navigation">
+        {% for contact in contacts %}
+        <a class="mdl-navigation__link" href="">{{ contact.name }}</a>
+        {% endfor %}
+    </nav>
+</div>

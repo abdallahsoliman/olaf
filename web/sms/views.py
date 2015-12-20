@@ -15,3 +15,4 @@ class MessageView(TemplateView):
         context = super(MessageView, self).get_context_data(**kwargs)
         context['contacts'] = models.Contact.objects.all()
         return context
+

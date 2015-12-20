@@ -1,4 +1,32 @@
-<div class="mdl-card mdl-shadow--2dp">
-    <div class="mdl-card__actions mdl-card--border">
+<div class="container sms-container mdl-shadow--2dp">
+    <div class="header">
+        <span>{{ messages.first.sender.name }}</span>
+        <button id="demo-menu-lower-right"
+            class="mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">more_vert</i>
+        </button>
+
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+            for="demo-menu-lower-right">
+            <li class="mdl-menu__item">Some Action</li>
+        </ul>
+    </div>
+    <div class="content">
+        <ul class="message-list">
+            {% for message in messages %}
+            <li class="message-bubble received">{{ message.content }}</li>
+            {% endfor %}
+        </ul>
+    </div> 
+    <div class="footer">
+        <form class="send-message-form" action="#">
+            <div class="mdl-textfield mdl-js-textfield">
+                <textarea class="mdl-textfield__input" type="text" rows= "3" id="sample5" ></textarea>
+                <label class="mdl-textfield__label" for="sample5">Text lines...</label>
+            </div>
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+                <i class="material-icons">send</i>
+            </button>
+        </form>
     </div>
 </div>

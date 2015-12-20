@@ -1,0 +1,53 @@
+.sms-container {
+  margin-top: 2vh;
+  height: 80vh;
+  overflow: hidden; }
+  .sms-container .header {
+    color: #fff;
+    height: 10vh;
+    background-color: #4ab367; }
+    .sms-container .header .mdl-button {
+      float: right; }
+  .sms-container .content {
+    height: 55vh;
+    overflow-y: scroll; }
+  .sms-container .footer {
+    height: 15vh; }
+    .sms-container .footer .send-message-form {
+      padding: 10px; }
+    .sms-container .footer .mdl-button {
+      float: right;
+      margin-top: 2vh;
+      margin-right: 10px; }
+    .sms-container .footer .mdl-textfield {
+      width: 90%; }
+
+.message-list {
+  list-style: none;
+  margin: 0;
+  padding: 8px;
+  overflow-y: scroll; }
+
+.message-bubble {
+  position: relative;
+  padding: 15px;
+  margin: 1em 0 3em;
+  color: #fff;
+  background: #007AFF;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  float: right;
+  display: inline-block; }
+  .message-bubble.received:after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    right: 20px;
+    border-width: 20px 0 0 20px;
+    border-style: solid;
+    border-color: #007AFF transparent;
+    display: block;
+    width: 0; }
+
+/*# sourceMappingURL=sms.css.map */
