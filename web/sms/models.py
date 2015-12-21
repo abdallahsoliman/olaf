@@ -56,7 +56,11 @@ class PhoneNumber(models.Model):
         return number
 
 class Message(models.Model):
-    sender = models.ForeignKey(Contact)
+    sender = models.ForeignKey(PhoneNumber)
     user = models.ForeignKey(User)
     content = models.CharField(max_length=1000)
     received_at = models.DateTimeField(auto_now_add=True)
+
+class MessageReceiver(models.Model):
+    message = models.ForeignKey(Message)
+    receiver = models.ForeignKey(PhoneNumber)

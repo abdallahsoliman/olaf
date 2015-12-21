@@ -11,3 +11,4 @@ class Command(BaseCommand):
             raise CommandError('This command can only be run in the development environment')
 
         Message.objects.all().delete()
+        print("All message objects successfully deleted")

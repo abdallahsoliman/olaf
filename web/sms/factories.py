@@ -26,6 +26,13 @@ class MessageFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.Message
 
-    sender = factory.LazyAttribute(lambda o: factory.Iterator(models.Contact.objects.all()))
+    sender = factory.LazyAttribute(lambda o: factory.Iterator(models.PhoneNumber.objects.all()))
     user = factory.LazyAttribute(lambda o: factory.Iterator(User.objects.all()))
     content = factory.LazyAttribute(lambda o: fake.paragraph(2))
+
+class MessageReceiverFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = models.MessageReceiver
+
+    message = factory.LazyAttribute(lambda o: factory.Iterator(models.Message.objects.all()))
+    receiver = factory.LazyAttribute(lambda o: factory.Iterator(models.PhoneNumber.objects.all()))
