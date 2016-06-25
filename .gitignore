@@ -75,3 +75,4 @@ android/captures
 
 # scss cache files
 web/.scss-cache
+web/venv
