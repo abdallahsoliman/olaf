@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "AACI,0BAAe;EACX,KAAK,EAAE,IAAI;AAEf,uBAAY;EACR,KAAK,EAAE,KAAK",
-"sources": ["../../../assets/authenticate/scss/authenticate.scss"],
+"mappings": "AAAA,cAAe;EACX,UAAU,EAAE,KAAK;EACjB,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;;AAGf,WAAY;EACR,WAAW,EAAE,IAAI;EACjB,YAAY,EAAE,IAAI;EAIlB,KAAK,EAAE,KAAK;EAHZ,iBAAM;IACF,KAAK,EAAE,IAAI",
+"sources": ["../scss/authenticate.scss"],
 "names": [],
 "file": "authenticate.css"
 }

@@ -6,16 +6,19 @@
 <link rel="stylesheet" href="{% static 'authenticate/css/authenticate.css' %}">
 {% endblock %}
 {% block content %}
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
-<form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    <table>
-        {{ form }}
-    </table>
-    <input type="submit" value="login" />
-    <input type="hidden" name="next" value="/" />
-</form>
+<div class="login-wrapper">
+    <div class="login-container">
+        {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+        {% endif %}
+        <form class="form-login" method="post" action="{% url 'login' %}">
+            <div class="row">
+                {% csrf_token %}
+                {{ form }}
+                <input class="button-primary" type="submit" value="Login">
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}
 

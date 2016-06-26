@@ -4,8 +4,8 @@
         <button class="button-primary"><i class="fa fa-paper-plane fa-2x" aria-hidden="true"></i></button>
     </div>
     <ul>
-        {% for message in number.message_set.order_by("received_at") %}
-        {% include "message/message.html" with message=message %}
+        {% for message in number.sorted_messages %}
+            {% include "message/message.html" with message=message %}
         {% endfor %}  
     </ul>       
 </div>          
