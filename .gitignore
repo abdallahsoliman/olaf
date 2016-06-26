@@ -74,5 +74,5 @@ android/build
 android/captures
 
 # scss cache files
-web/.scss-cache
+.scss-cache
 web/venv
