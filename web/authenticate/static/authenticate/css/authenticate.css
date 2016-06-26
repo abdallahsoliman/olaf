@@ -1,6 +1,13 @@
-#form-login .mdl-textfield {
+.login-wrapper {
+  margin-top: 100px;
+  height: 100%;
   width: 100%; }
-#form-login .mdl-button {
-  float: right; }
+
+.form-login {
+  margin-left: auto;
+  margin-right: auto;
+  width: 350px; }
+  .form-login input {
+    width: 100%; }
 
 /*# sourceMappingURL=authenticate.css.map */

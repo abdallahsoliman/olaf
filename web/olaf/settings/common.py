@@ -122,7 +122,6 @@ THIRD_PARTY_APPS = (
     'compressor',
     'rest_framework',
     'rest_framework.authtoken',
-    'swampdragon',
 )
 LOCAL_APPS = (
     'olaf',
@@ -133,10 +132,6 @@ LOCAL_APPS = (
 )
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 ########## END APP CONFIGURATION
-
-########## START SESSION ENGINE CONFIGURATION
-SESSION_ENGINE = "sessions.redis_session_store"
-########## END SESSION ENGINE CONFIGURATION
 
 
 ########## LOGGING CONFIGURATION
@@ -183,9 +178,4 @@ REST_FRAMEWORK = {
     )
 }
 ########## END DJANGO REST FRAMEWORK CONFIGURATION
-
-########## START SWAMPDRAGON SETTINGS
-SWAMP_DRAGON_CONNECTION = ('swampdragon.connections.sockjs_connection.DjangoSubscriberConnection', '/data')
-DRAGON_URL = 'http://localhost:9999/'
-########## END SWAMPDRAGON SETTINGS
 
