@@ -22,6 +22,7 @@ DATABASES = {
 ########## APP CONFIGURATION
 
 THIRD_PARTY_APPS = (
+    'django_extensions',
 )
 INSTALLED_APPS += THIRD_PARTY_APPS
 ########## END APP CONFIGURATION

@@ -13,6 +13,7 @@ class MessageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(MessageView, self).get_context_data(**kwargs)
-        context['contacts'] = models.Contact.objects.all()
+        contacts = self.request.user.contact_set.annotate(latest_active=Max("phonenumber__message__received_at")).order_by("-latest_active")
+        context['contacts'] = contacts
         return context
 

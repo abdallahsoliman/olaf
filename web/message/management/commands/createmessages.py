@@ -1,9 +1,9 @@
 import random
 from os import environ
 from django.core.management.base import BaseCommand, CommandError
-from sms.factories import MessageFactory
+from message.factories import MessageFactory
 from authenticate.models import User
-from sms.models import Contact
+from message.models import Contact, PhoneNumber
 
 class Command(BaseCommand):
     help = "creates random number of messages for all contacts associated with a user"

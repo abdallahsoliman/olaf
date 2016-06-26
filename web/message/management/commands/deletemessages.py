@@ -1,6 +1,6 @@
 from os import environ
 from django.core.management.base import BaseCommand, CommandError
-from sms.models import Message
+from message.models import Message
 
 class Command(BaseCommand):
     help = "Deletes all messages in database"

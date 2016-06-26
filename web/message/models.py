@@ -60,6 +60,7 @@ class Message(models.Model):
     user = models.ForeignKey(User)
     content = models.CharField(max_length=1000)
     received_at = models.DateTimeField(auto_now_add=True)
+    
 
 class MessageReceiver(models.Model):
     message = models.ForeignKey(Message)

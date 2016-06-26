@@ -1,6 +1,6 @@
 from os import environ
 from django.core.management.base import BaseCommand, CommandError
-from sms.factories import ContactFactory, PhoneNumberFactory
+from message.factories import ContactFactory, PhoneNumberFactory
 from authenticate.models import User
 
 class Command(BaseCommand):

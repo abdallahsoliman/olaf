@@ -186,6 +186,6 @@ REST_FRAMEWORK = {
 
 ########## START SWAMPDRAGON SETTINGS
 SWAMP_DRAGON_CONNECTION = ('swampdragon.connections.sockjs_connection.DjangoSubscriberConnection', '/data')
-DRAGON_URL = 'http://localhost:3000/'
+DRAGON_URL = 'http://localhost:9999/'
 ########## END SWAMPDRAGON SETTINGS
 

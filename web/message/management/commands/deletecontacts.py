@@ -1,6 +1,6 @@
 from os import environ
 from django.core.management.base import BaseCommand, CommandError
-from sms.models import Contact, PhoneNumber
+from message.models import Contact, PhoneNumber
 
 class Command(BaseCommand):
     help = "Deletes all phone numbers and contacts. Only for development environment."
