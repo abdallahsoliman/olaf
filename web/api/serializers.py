@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from authenticate.models import User
-from sms.models import Contact, Message, PhoneNumber
+from message.models import Contact, Message, PhoneNumber
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

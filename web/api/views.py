@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from django.core.exceptions import ValidationError
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotModified
 from authenticate.models import User
-from sms.models import Message, Contact
+from message.models import Message, Contact
 from api import serializers
 
 class UserViewSet(viewsets.ModelViewSet):

@@ -127,7 +127,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'olaf',
     'authenticate',
-    'sms',
+    'message',
     'dorm',
     'health',
 )

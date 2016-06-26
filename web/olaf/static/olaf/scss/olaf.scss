@@ -1,6 +1,6 @@
 @import 'https://fonts.googleapis.com/css?family=Lato|Orbitron';
 
-html, body {
+html, body, .wrapper {
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -14,6 +14,10 @@ li {
 a {
     text-decoration: none;
     color: inherit;
+    &:hover {
+        color: inherit;
+        text-decoration: none;
+    }
 }
 .header-nav {
     border-bottom: 0 none;

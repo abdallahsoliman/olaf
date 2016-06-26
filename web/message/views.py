@@ -9,7 +9,7 @@ class MessageList(ListView):
         return models.Message.objects.all(sender=contact).order_by('-received_at')
 
 class MessageView(TemplateView):
-    template_name = "sms/index.html"
+    template_name = "message/index.html"
 
     def get_context_data(self, **kwargs):
         context = super(MessageView, self).get_context_data(**kwargs)

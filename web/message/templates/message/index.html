@@ -1,0 +1,22 @@
+{% extends 'olaf/base.html' %}
+{% load static %}
+
+{% block title %}Message{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'message/css/message.css' %}">{% endblock %}
+
+{% block content %}
+<ul class="contact-list">
+    {% for i in "1234567" %}
+    <li>
+        <a href="#" class="contact-list-item" href="">
+            <div class="contact-name"> > Abdallah Soliman</div>
+            <div class="latest-msg-preview">
+                <i class="fa fa-mobile" aria-hidden="true"></i>
+                <span>11:00 PM 21 Jun 16</span>
+                <p>This is a message preview...</p>
+            </div>
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
