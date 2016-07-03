@@ -1,0 +1,19 @@
+{% extends "olaf/base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.roundslider/1.3/roundslider.min.css">
+<link rel="stylesheet" href="{% static "actuator/css/actuator.css" %}">
+{% endblock %}
+
+{% block content %}
+{% include "actuator/dimmer.html" %}
+{% include "actuator/thermostat.html" %}
+{% endblock %}
+
+{% block js %}
+<script src="{% static "actuator/js/actuator.js" %}"></script>
+<script src="{% static "actuator/js/dimmer.js"%}"></script>
+<script src="https://cdn.jsdelivr.net/jquery.roundslider/1.3/roundslider.min.js"></script>
+<script src="{% static "actuator/js/thermostat.js"%}"></script>
+{% endblock  %}

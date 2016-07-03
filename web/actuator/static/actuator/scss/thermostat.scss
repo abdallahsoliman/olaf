@@ -1,0 +1,151 @@
+.thermostat-wrapper {
+	background: #eae8e9;
+    position: relative;
+    display:inline-block;    
+
+	&::before,
+	&::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 280px;
+		height: 280px;
+		background-image: linear-gradient(-47deg, #656565 18%, #BBBBBB 33%, #757575 51%, #616161 66%, #C1C1C1 83%, #83837e 90%);
+		border-radius: 50%;
+		z-index: 1;
+		border: 2px solid #98989a;
+		box-shadow: 0 1px 12px 1px rgba(0,0,0,.26);
+	}
+
+	&::after {
+		background-image: linear-gradient(140deg, rgba(255,255,255,.29), rgba(255,255,255,.13) 37%, rgba(255,255,255,0) 37.1%);
+		width: 247px;
+		height: 247px;
+		z-index: 4;
+		border: none;
+		pointer-events: none;
+	}
+
+}
+#slider {
+	position: absolute;
+	z-index: 2;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-family: Roboto, sans-serif;
+
+	&::before, &::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 250px;
+		height: 250px;
+		background: #000;
+		border-radius: 50%;
+		z-index: 1;
+	}
+
+	&::after {
+		z-index: 2;
+		box-shadow: inset 0 0 5px #000;
+		background: linear-gradient(-190deg, rgba(255, 255, 255, .3),  rgba(255, 255, 255, 0) 50%);
+	}
+}
+
+#animation1.rs-animation .rs-transition  {
+	transition: all .1s ease-in-out;
+}
+
+.rs-gradient, .rs-gradient:after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 170px;
+	height: 170px;
+	background: hsl(209, 100%, 42%);
+	box-shadow: inset 0 -2px 5px rgba(0, 0, 0, .2), inset 0 3px 5px rgba(0, 0, 0, .1), 0 0 3px #000;
+	border-radius: 50%;
+	z-index: 3;
+	opacity: .8
+}
+
+.rs-gradient:after {
+	background: linear-gradient(0, rgba(0, 0, 0, 0), rgba(0, 0, 0, .4));
+}
+
+.rs-path-color {
+	background: #444;
+}
+
+.rs-range-color {
+	background: #fff;
+	transition: background .02s ease-in-out;
+}
+
+.rs-border {
+	border: 1px solid #000;
+	box-shadow: inset 0 2px 6px rgba(0, 0, 0, .3);
+}
+
+.rs-seperator {
+	border: none;
+}
+
+.rs-control .rs-split .rs-path, .rs-control .rs-overlay1, .rs-control .rs-overlay2 {
+
+}
+
+.rs-border, .rs-bg-color {
+	background: #000;
+}
+
+.rs-tooltip-text {
+	font-family: Roboto, sans-serif;
+	font-size: 53px;
+	border-radius: 7px;
+	transition: background .02s ease-in-out;
+	color: #fff;
+	pointer-events: none;
+	transform: translateY(3px);
+}
+
+.rs-tooltip-text:before {
+	position: absolute;
+	left: 3px;
+	top: -11px;
+	content: 'HEATING';
+	font-size: 12px;
+}
+
+.rs-handle {
+
+}
+
+.rs-handle {
+	background: none;
+	border: none;
+	background: none;
+	width: 60px;
+	height: 60px;
+
+	&::after  {
+		background: #fff;
+		border-radius: 0;
+		border: none;
+		height: 1px;
+		width: 14px;
+		margin: 8px 0 0 3px;
+	}
+}
+
+.rs-handle.rs-move {
+	cursor: -webkit-grab;
+	cursor: -moz-grab;
+}
